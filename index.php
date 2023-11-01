@@ -40,7 +40,17 @@
 
     ];
 
+    $filteredHotels = [];
+
 // var_dump($hotels)
+
+    if (isset($_POST['parking']) && $_POST['parking'] == 'on') {
+        $filteredHotels = array_filter($hotels, function ($hotel) {
+            return $hotel['parking'];
+        });
+    } else {
+        $filteredHotels = $hotels;
+    };
 
 
 ?>
@@ -62,6 +72,18 @@
 
     <h1 class="my-3">Hotels</h1>
 
+    <form action="index.php" method="POST" class="my-3">
+        <div class="row">
+            <div class="col">
+                <input type="checkbox" class="form-check-input" name="parking" id="parking" >
+                <label for="parking" class="form-check-label">Solo Hotel con parcheggio</label>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Cerca</button>
+            </div>
+        </div>
+    </form>
+
     <table class="table table-hover">
   
       <thead>
@@ -75,7 +97,7 @@
       </thead>
   
       <tbody>
-        <?php foreach ($hotels as $index => $hotel) { ?>
+        <?php foreach ($filteredHotels as $index => $hotel) { ?>
           <tr>
               <th scope="row"><?php echo $hotel['name']; ?></th>
               <td><?php echo $hotel['description']; ?></td>
