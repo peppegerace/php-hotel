@@ -44,7 +44,7 @@
 
 // var_dump($hotels)
 
-    if (isset($_POST['parking']) && $_POST['parking'] == 'on') {
+    if (isset($_GET['parking']) && $_GET['parking'] == 'on') {
         $filteredHotels = array_filter($hotels, function ($hotel) {
             return $hotel['parking'];
         });
@@ -72,7 +72,7 @@
 
     <h1 class="my-3">Hotels</h1>
 
-    <form action="index.php" method="POST" class="my-3">
+    <form action="index.php" method="GET" class="my-3">
         <div class="row">
             <div class="col">
                 <input type="checkbox" class="form-check-input" name="parking" id="parking" >
